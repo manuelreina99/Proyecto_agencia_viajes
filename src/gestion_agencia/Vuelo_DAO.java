@@ -1,7 +1,5 @@
 package gestion_agencia;
 
-public class Sucursal {
-	
-	
+public class Vuelo_DAO {
 
 }

@@ -22,12 +22,11 @@ public class Gestion_agencia {
 			System.out.println("4 modificar reserva hotel");
 			System.out.println("5 eliminar reserva vuelo");
 			System.out.println("6 eliminar reserva hotel");
-			System.out.println("7 listar reservas vuelos");
-			System.out.println("8 listar reservas hoteles");
-			System.out.println("9 buscar reserva de vuelos por fecha");
-			System.out.println("10 buscar reservas por id cliente");
-			System.out.println("11 listar reservas futuras de cada sucursal");
-			System.out.println("12 salir");
+			System.out.println("7 listar reservas ordenadas por fecha de realización ");
+			System.out.println("10 buscar reservas por id cliente(hoteles y vuelos)");
+			System.out.println("9 buscar vuelos por fecha");
+			System.out.println("11 buscar vuelos disponibles");
+			System.out.println("12 buscar vuelos por destino");
 			opcion= scanner.nextInt();
 		} while (opcion!=8);
 		
