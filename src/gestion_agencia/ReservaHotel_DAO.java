@@ -45,7 +45,7 @@ public void create(ReservaHotel reservaHotel) {
 		
 		
 		
-		String sql= "INSERT INTO pedidos VALUES (?,?,?,?,?,?,?); ";
+		String sql= "INSERT INTO reservahotel VALUES (?,?,?,?,?,?,?); ";
 		
 		try {
 			PreparedStatement sentencia= conexion.prepareStatement(sql);
@@ -146,18 +146,18 @@ public void modificar() {
 		
 	}
 
-public void eliminar_pedido() {
+public void eliminar_reserva() {
 	
-	System.out.println("introduzca el numero del pedido");
-	String numpedido = scanner.next();
+	System.out.println("introduzca el id de reserva");
+	int id = scanner.nextInt();
 	
 	
-	String sql= "DELETE FROM pedidos WHERE numpedido =? ";
+	String sql= "DELETE FROM reservahotel WHERE id_reserva_hotel =? ";
 	
 	try {
 		PreparedStatement sentencia= conexion.prepareStatement(sql);
 		
-		sentencia.setString(1, numpedido);
+		sentencia.setInt(1, id);
 		
 		int filasAfectadas= sentencia.executeUpdate();
 		System.out.println("filas afectadas:"+ filasAfectadas);
@@ -168,5 +168,6 @@ public void eliminar_pedido() {
 	}
 	
 }
+
 
 }

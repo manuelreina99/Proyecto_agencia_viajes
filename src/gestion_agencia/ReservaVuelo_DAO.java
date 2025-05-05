@@ -42,18 +42,16 @@ public void create(ReservaVuelo reservaVuelo) {
 		
 		
 		
-		String sql= "INSERT INTO pedidos VALUES (?,?,?,?,?,?,?); ";
+		String sql= "INSERT INTO pedidos VALUES (?,?,?,?,?); ";
 		
 		try {
 			PreparedStatement sentencia= conexion.prepareStatement(sql);
 			
-			sentencia.setInt(1, reservaHotel.getId_reserva_hotel());
-			sentencia.setInt(2, reservaHotel.getId_cliente());
-			sentencia.setInt(3, reservaHotel.getId_hotel());
-			sentencia.setInt(4, reservaHotel.getId_sucursal());
-			sentencia.setDate(5, java.sql.Date.valueOf(reservaHotel.getFecha_entrada()));
-			sentencia.setDate(6, java.sql.Date.valueOf(reservaHotel.getFecha_salida()));
-			sentencia.setDate(7, java.sql.Date.valueOf(reservaHotel.getFecha_reserva()));
+			sentencia.setInt(1, reservaVuelo.getId_reserva_vuelo());
+			sentencia.setInt(2, reservaVuelo.getId_cliente());
+			sentencia.setInt(3, reservaVuelo.getId_vuelo());
+			sentencia.setInt(4, reservaVuelo.getId_sucursal());
+			sentencia.setDate(5, java.sql.Date.valueOf(reservaVuelo.getFecha_reserva()));
 			
 			int filasAfectadas= sentencia.executeUpdate();
 			System.out.println("filas afectadas"+ filasAfectadas);
@@ -65,11 +63,11 @@ public void create(ReservaVuelo reservaVuelo) {
 		
 }
 
-public List<ReservaHotel> array() {
+public List<ReservaVuelo> array() {
 	
-	List<ReservaHotel> lista= new ArrayList<>();
-	ReservaHotel reservaHotel=null;
-	String sql= "SELECT * FROM reservahotel";
+	List<ReservaVuelo> lista= new ArrayList<>();
+	ReservaVuelo reservaVuelo=null;
+	String sql= "SELECT * FROM reservaVuelo";
 	try {
 		PreparedStatement sentencia= conexion.prepareStatement(sql);
 		ResultSet rs= sentencia.executeQuery();
@@ -77,19 +75,16 @@ public List<ReservaHotel> array() {
 		while(rs.next()) {
 			
 			
-			int id_reserva_hotel= rs.getInt("id_reserva_hotel");
+			int id_reserva_vuelo= rs.getInt("id_reserva_vuelo");
 			int id_cliente= rs.getInt("id_cliente");
-			int id_hotel= rs.getInt("id_hotel");
+			int id_vuelo= rs.getInt("id_vuelo");
 			int id_sucursal= rs.getInt("id_sucursal");
-			
-			LocalDate fecha_entrada= rs.getDate("fecha_entrada").toLocalDate();
-			LocalDate fecha_salida= rs.getDate("fecha_salida").toLocalDate();
 			LocalDate fecha_reserva= rs.getDate("fecha_reserva").toLocalDate();
 			
 
 			
-			reservaHotel= new ReservaHotel(id_reserva_hotel, id_cliente, id_hotel, id_sucursal, fecha_entrada, fecha_salida, fecha_reserva);
-			lista.add(reservaHotel);
+			reservaVuelo= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, fecha_reserva);
+			lista.add(reservaVuelo);
 			
 			}
 		
@@ -143,18 +138,18 @@ public void modificar() {
 		
 	}
 
-public void eliminar_pedido() {
+public void eliminar_reserva() {
 	
-	System.out.println("introduzca el numero del pedido");
-	String numpedido = scanner.next();
+	System.out.println("introduzca el id de reserva");
+	int id = scanner.nextInt();
 	
 	
-	String sql= "DELETE FROM pedidos WHERE numpedido =? ";
+	String sql= "DELETE FROM reservavuelo WHERE id_reserva_vuelo =? ";
 	
 	try {
 		PreparedStatement sentencia= conexion.prepareStatement(sql);
 		
-		sentencia.setString(1, numpedido);
+		sentencia.setInt(1, id);
 		
 		int filasAfectadas= sentencia.executeUpdate();
 		System.out.println("filas afectadas:"+ filasAfectadas);
