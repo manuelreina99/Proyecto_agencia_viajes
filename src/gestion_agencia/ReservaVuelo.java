@@ -8,7 +8,22 @@ public class ReservaVuelo {
 	private int id_cliente;
 	private int id_vuelo;
 	private int id_sucursal;
+	private String clase;
 	private LocalDate fecha_reserva;
+	
+	
+	/**
+	 * @return the clase
+	 */
+	public String getClase() {
+		return clase;
+	}
+	/**
+	 * @param clase the clase to set
+	 */
+	public void setClase(String clase) {
+		this.clase = clase;
+	}
 	/**
 	 * @return the id_reserva_vuelo
 	 */
@@ -69,12 +84,15 @@ public class ReservaVuelo {
 	public void setFecha_reserva(LocalDate fecha_reserva) {
 		this.fecha_reserva = fecha_reserva;
 	}
-	public ReservaVuelo(int id_reserva_vuelo, int id_cliente, int id_vuelo, int id_sucursal, LocalDate fecha_reserva) {
+	
+	public ReservaVuelo(int id_reserva_vuelo, int id_cliente, int id_vuelo, int id_sucursal, String clase,
+			LocalDate fecha_reserva) {
 		super();
 		this.id_reserva_vuelo = id_reserva_vuelo;
 		this.id_cliente = id_cliente;
 		this.id_vuelo = id_vuelo;
 		this.id_sucursal = id_sucursal;
+		this.clase = clase;
 		this.fecha_reserva = fecha_reserva;
 	}
 	@Override

@@ -42,7 +42,7 @@ public void create(ReservaVuelo reservaVuelo) {
 		
 		
 		
-		String sql= "INSERT INTO pedidos VALUES (?,?,?,?,?); ";
+		String sql= "INSERT INTO reservavuelo VALUES (?,?,?,?,?,?); ";
 		
 		try {
 			PreparedStatement sentencia= conexion.prepareStatement(sql);
@@ -51,7 +51,9 @@ public void create(ReservaVuelo reservaVuelo) {
 			sentencia.setInt(2, reservaVuelo.getId_cliente());
 			sentencia.setInt(3, reservaVuelo.getId_vuelo());
 			sentencia.setInt(4, reservaVuelo.getId_sucursal());
-			sentencia.setDate(5, java.sql.Date.valueOf(reservaVuelo.getFecha_reserva()));
+			sentencia.setString(5, reservaVuelo.getClase());
+			sentencia.setDate(6, java.sql.Date.valueOf(reservaVuelo.getFecha_reserva()));
+			
 			
 			int filasAfectadas= sentencia.executeUpdate();
 			System.out.println("filas afectadas"+ filasAfectadas);
@@ -79,11 +81,13 @@ public List<ReservaVuelo> array() {
 			int id_cliente= rs.getInt("id_cliente");
 			int id_vuelo= rs.getInt("id_vuelo");
 			int id_sucursal= rs.getInt("id_sucursal");
+			String clase= rs.getString("clase");
 			LocalDate fecha_reserva= rs.getDate("fecha_reserva").toLocalDate();
+			
 			
 
 			
-			reservaVuelo= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, fecha_reserva);
+			reservaVuelo= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, clase, fecha_reserva);
 			lista.add(reservaVuelo);
 			
 			}

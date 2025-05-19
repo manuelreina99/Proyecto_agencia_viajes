@@ -14,7 +14,7 @@ public class ReservaHotel {
 	
 	
 	public ReservaHotel(int id_reserva_hotel, int id_cliente, int id_hotel, int id_sucursal, LocalDate fecha_entrada,
-			LocalDate fecha_salida, LocalDate fecha_reserva) {
+			LocalDate fecha_salida) {
 		super();
 		this.id_reserva_hotel = id_reserva_hotel;
 		this.id_cliente = id_cliente;
@@ -22,7 +22,7 @@ public class ReservaHotel {
 		this.id_sucursal = id_sucursal;
 		this.fecha_entrada = fecha_entrada;
 		this.fecha_salida = fecha_salida;
-		this.fecha_reserva = fecha_reserva;
+		this.fecha_reserva = LocalDate.now();
 	}
 
 

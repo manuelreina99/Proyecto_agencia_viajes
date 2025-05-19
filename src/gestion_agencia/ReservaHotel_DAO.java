@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -87,11 +88,11 @@ public List<ReservaHotel> array() {
 			
 			LocalDate fecha_entrada= rs.getDate("fecha_entrada").toLocalDate();
 			LocalDate fecha_salida= rs.getDate("fecha_salida").toLocalDate();
-			LocalDate fecha_reserva= rs.getDate("fecha_reserva").toLocalDate();
+			
 			
 
 			
-			reservaHotel= new ReservaHotel(id_reserva_hotel, id_cliente, id_hotel, id_sucursal, fecha_entrada, fecha_salida, fecha_reserva);
+			reservaHotel= new ReservaHotel(id_reserva_hotel, id_cliente, id_hotel, id_sucursal, fecha_entrada, fecha_salida);
 			lista.add(reservaHotel);
 			
 			}
@@ -108,24 +109,37 @@ public List<ReservaHotel> array() {
 
 public void modificar() {
 	
-	System.out.println("introduzca numero de reserva");
-	int numpedido= scanner.nextInt();
+	System.out.println("introduzca id de reserva");
+	int id_reserva_hotel= scanner.nextInt();
 	
 	
 	
-	System.out.println("introduzca id resp");
-	int resp= scanner.nextInt();
+	System.out.println("introduzca nueva fecha de entrada");
+	String fecha_entrada= scanner.next();
+	DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd/MM/yyy");
+	LocalDate fecha_final= LocalDate.parse(fecha_entrada, formatter);
 	
+	
+	System.out.println("introduzca nueva fecha de salida");
+	String fecha_salida= scanner.next();
+	DateTimeFormatter formatter1= DateTimeFormatter.ofPattern("dd/MM/yyy");
+	LocalDate fecha_final1= LocalDate.parse(fecha_salida, formatter1);
+	
+	LocalDate fecha_reserva= LocalDate.now();
 	
 		
 		
-		String sql=  "UPDATE pedidos SET   resp=?  WHERE numpedido = ?";
+		String sql=  "UPDATE reservahotel SET   fecha_entrada=?, fecha_salida=?, fecha_reserva=?  WHERE id_reserva_hotel = ?";
 		try {
 			PreparedStatement sentencia= conexion.prepareStatement(sql);
 			
-			sentencia.setInt(2, numpedido);
+			sentencia.setInt(4, id_reserva_hotel);
 			
-			sentencia.setInt(1, resp);
+		
+			
+			sentencia.setDate(1, java.sql.Date.valueOf(fecha_final));
+			sentencia.setDate(2, java.sql.Date.valueOf(fecha_final1));
+			sentencia.setDate(3, java.sql.Date.valueOf(fecha_reserva));
 			
 			
 			
@@ -140,7 +154,7 @@ public void modificar() {
 			
 		} catch (SQLException ex) {
 			// TODO: handle exception
-			System.out.println("Error al consultar un pedido");
+			System.out.println("Error al consultar una reserva");
 			
 		}
 		
