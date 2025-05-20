@@ -111,12 +111,9 @@ public class Gestion_agencia {
 		int id_sucursal= scanner.nextInt();
 		System.out.println("introduzca clase turista o primera");
 		String clase= scanner.next();
-		System.out.println("introduzca fecha reserva");
-		String fecha= scanner.next();
-		DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd/MM/yyy");
-		LocalDate fecha_final= LocalDate.parse(fecha, formatter);
 		
-		ReservaVuelo rs= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, clase, fecha_final);
+		
+		ReservaVuelo rs= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, clase);
 		return rs;
 	}
 	

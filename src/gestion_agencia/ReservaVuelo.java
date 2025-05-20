@@ -85,15 +85,14 @@ public class ReservaVuelo {
 		this.fecha_reserva = fecha_reserva;
 	}
 	
-	public ReservaVuelo(int id_reserva_vuelo, int id_cliente, int id_vuelo, int id_sucursal, String clase,
-			LocalDate fecha_reserva) {
+	public ReservaVuelo(int id_reserva_vuelo, int id_cliente, int id_vuelo, int id_sucursal, String clase) {
 		super();
 		this.id_reserva_vuelo = id_reserva_vuelo;
 		this.id_cliente = id_cliente;
 		this.id_vuelo = id_vuelo;
 		this.id_sucursal = id_sucursal;
 		this.clase = clase;
-		this.fecha_reserva = fecha_reserva;
+		this.fecha_reserva = LocalDate.now();
 	}
 	@Override
 	public String toString() {

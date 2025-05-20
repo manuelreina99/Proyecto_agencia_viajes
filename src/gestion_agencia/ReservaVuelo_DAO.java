@@ -82,12 +82,12 @@ public List<ReservaVuelo> array() {
 			int id_vuelo= rs.getInt("id_vuelo");
 			int id_sucursal= rs.getInt("id_sucursal");
 			String clase= rs.getString("clase");
-			LocalDate fecha_reserva= rs.getDate("fecha_reserva").toLocalDate();
+			
 			
 			
 
 			
-			reservaVuelo= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, clase, fecha_reserva);
+			reservaVuelo= new ReservaVuelo(id_reserva_vuelo, id_cliente, id_vuelo, id_sucursal, clase);
 			lista.add(reservaVuelo);
 			
 			}
